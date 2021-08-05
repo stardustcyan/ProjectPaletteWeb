@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        .navigator {
+            overflow: hidden;
+            background-color: #7DB9DE;
+        }
+
+        .navigator a {
+            float: left;
+            display: block;
+            color: #FCFAF2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .navigator a.main_page {
+            background-color:#51A8DD;
+            color:#FCFAF2;
+        }
+
+        .navigator a:hover {
+            background-color: #58B2DC;
+        }
+
+        .header {
+            width: 100%;
+        }
+
+        div.vtb_data {
+            float: right;
+            margin: 20px;
+            border: 3px solid #787878;
+            width: 125px;
+            border-radius: 25px;
+            text-align: center;
+            transition: border 0.3s;
+        }
+
+        div.vtb_data:not(.vtb_name) {
+            margin-top: 55px;
+            box-shadow: 2px 2px 1px #999999;
+        }
+
+        div.vtb_data:not(.vtb_name):hover {
+            border: 3px solid #1C1C1C;
+        }
+
+        div.vtb_name {
+            float: left;
+            font-size: 800%;
+            border: 0px;
+            width: auto;
+            clear: both;
+        }
+
+        div.vtb_data p.vtb_data_title{
+            font-size: 150%;
+            margin-bottom: 0px;
+        }
+
+        div.video {
+            border: 3px solid #787878;
+            border-radius: 25px;
+            margin: 20px;
+            float: left;
+            width: 180px;
+            overflow: hidden;
+            height: 111px;
+            box-shadow: 2px 2px 1px #999999;
+        }
+
+        div.video:hover {
+            border: 3px solid #1C1C1C;
+        }
+
+        div.video img {
+            width: 100%;
+            height: auto;
+        }
+
+        div.video_title {
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .list_start {
+            clear: both;
+        }
+    </style>
+    <head>
+        <meta charset="UTF-8" name="referrer" content="no-referrer">
+        <title>{{ title }} - Project Palette</title>
+    </head>
+    <body>
+        <div class="navigator">
+            <a class="main_page" href="/index">Project Palette</a>
+            <a href="/list">列表</a>
+        </div>
+
+        <div class="header">
+            <div class="vtb_data vtb_name">
+                {{ vtuber.name }}
+            </div>
+            <div class="vtb_data">
+                <p class="vtb_data_title">粉丝数量</p>
+                <p class="vtb_data_number">1000</p>
+            </div>
+            <div class="vtb_data">
+                <p class="vtb_data_title">视频数量</p>
+                <p class="vtb_data_number">{{ video_count }}</p>
+            </div>
+        </div>
+
+        <h1 class="list_start">视频列表</h1>
+
+        <div class="video_list">
+            {% for video in videos %}
+            <div class="video">
+                <a href="{{ video.link }}">
+                    <img src="{{ video.face }}">
+                    <div class="video_title">
+                        {{ video.title }}
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>

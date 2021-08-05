@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+        <h1>社团/企业</h1>
+        <hr>
+        {% for group in groups %}
+            <p><a href="{{ '/group/'~group.id }}">{{ group.name }}</a></p>
+        {% endfor %}
+    </div>
+    <br>
+    <div>
+        <h1>管人</h1>
+        <hr>
+        {% for vtb in vtbs %}
+            <p><a href="{{ '/vtuber/'~vtb.id }}"><b>{{ vtb.name }}</b></a><br><small>{{ vtb.group.name }}所属</small></p>
+        {% endfor %}
+    </div>
+{% endblock %}

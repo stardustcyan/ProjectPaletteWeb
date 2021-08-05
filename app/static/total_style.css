@@ -1,0 +1,39 @@
+ul.title {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #7DB9DE;
+}
+
+li.title {
+    float: left;
+}
+
+li.title a {
+    display: block;
+    color:#FCFAF2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+li.title a.main_page {
+    background-color:#51A8DD;
+    color:#FCFAF2;
+}
+
+li.title a:hover {
+    background-color: #58B2DC;
+}
+
+ul.show_vtb {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+
+li.show_vtb {
+    display:inline;
+}
