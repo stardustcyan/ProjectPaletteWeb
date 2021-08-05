@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% for vtb in vtbs %}
+        <div><p><a href="{{ '/vtuber/'~vtb.id }}"><b>{{ vtb.name }}</b></a><br><small>{{ vtb.group.name }}所属</small></p></div>
+    {% endfor %}
+
+{% endblock %}
