@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+        <h1>频道汇总</h1>
+        <hr>
+        {% for channel in channels %}
+            <p><a href="{{ '/data/'~channel }}"><b>{{ channel }}</b></a></p>
+        {% endfor %}
+    </div>
+{% endblock %}

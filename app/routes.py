@@ -46,3 +46,19 @@ def group(id):
     vtbs = Vtuber.query.filter_by(group_id=id).all()
 
     return render_template('group.html', group=grp, vtubers=vtbs, title=grp.name)
+
+@app.route('/data_list')
+def data_list():
+    with open('app/data/AllData.json', 'r') as f:
+        channel_summary = json.load(f)
+    
+    channels = list(channel_summary.keys())
+
+    return render_template('data_list.html', channels = channels, title = '数据汇总')
+
+@app.route('/data/<name>')
+def vtuber_data(name):
+    with open('app/data/AllData.json', 'r') as f:
+        channel_summary = json.load(f)
+
+    return render_template('vtb_data.html', channel = name, title = name)
