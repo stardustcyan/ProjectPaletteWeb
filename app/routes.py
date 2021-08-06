@@ -17,13 +17,17 @@ def index():
     return render_template('index.html', vtbs=vtbs, title='主页')
 
 
-@app.route('/list')
-def list():
-    groups = Group.query.all()
+@app.route('/vtb_list')
+def vtb_list():
     vtbs = Vtuber.query.all()
 
-    return render_template('list.html', vtbs=vtbs, groups=groups, title='管人列表')
+    return render_template('vtb_list.html', vtbs=vtbs, title='管人列表')
 
+@app.route('/group_list')
+def group_list():
+    groups = Group.query.all();
+
+    return render_template('group_list.html', groups = groups, title = '社团/企业列表')
 
 @app.route('/vtuber/<id>')
 def vtuber(id):

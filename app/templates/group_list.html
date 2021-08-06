@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+        <h1>社团/企业列表</h1>
+        <hr>
+        {% for group in groups %}
+            <p><a href="{{ '/group/'~group.id }}"><b>{{ group.name }}</b></a></p>
+        {% endfor %}
+    </div>
+{% endblock %}
