@@ -1,7 +1,88 @@
-{% extends "base.html" %}
-{% block content %}
-    <div>
-        <h1>{{ channel }}</h1>
-        <hr>
-    </div>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="{{ url_for('static', filename='total_style.css') }}">
+    <head>
+        <meta charset="UTF-8">
+        {% if title %}
+            <title>{{ title }} - Project Palette</title>
+        {% else %}
+            <title>欢迎访问Project Palette!</title>
+        {% endif %}
+        <script src="{{ url_for('static', filename='echarts.min.js') }}"></script>
+    </head>
+    <body>
+        <ul class="title">
+            <li class="title"><a class="main_page" href="/index">Project Palette</a></li>
+            <li class="title"><a href="/vtb_list">管人列表</a></li>
+            <li class="title"><a href="/group_list">社团/企业列表</a></li>
+            <li class="title"><a href="/data_list">数据汇总</a></li>
+        </ul>
+        <div>
+            <h1>{{ channel }}</h1>
+            <hr>
+            <div id="main" style="width: 1200px;height:800px;"></div>
+            
+            <script type="text/javascript">
+                var myChart = echarts.init(document.getElementById('main'));
+
+                var data = new Array();
+
+                {% for vData in subData %}
+
+                data.push(["{{ vData['date'] }}", {{ vData['value'] }}]);
+
+                {% endfor %}
+
+                option = {
+                    tooltip: {
+                        trigger: 'axis',
+                        position: function (pt) {
+                        return [pt[0], '10%'];
+                        }
+                    },
+                    title: {
+                        left: 'center',
+                        text: '大数据量面积图',
+                    },
+                    toolbox: {
+                        feature: {
+                            dataZoom: {
+                                yAxisIndex: 'none'
+                            },
+                            restore: {},
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'time',
+                        boundaryGap: false
+                    },
+                    yAxis: {
+                        type: 'value',
+                        boundaryGap: [0, '100%']
+                    },
+                    dataZoom: [{
+                        type: 'inside',
+                        start: 0,
+                        end: 20
+                    }, {
+                        start: 0,
+                        end: 20
+                    }],
+                    series: [
+                        {
+                            name: '订阅数据',
+                            type: 'line',
+                            smooth: true,
+                            symbol: 'none',
+                            areaStyle: {},
+                            data: data
+                        }
+                    ]
+                };
+
+                myChart.setOption(option);
+            </script>
+        </div>
+    </body>
+</html>

@@ -61,4 +61,11 @@ def vtuber_data(name):
     with open('app/data/AllData.json', 'r') as f:
         channel_summary = json.load(f)
 
-    return render_template('vtb_data.html', channel = name, title = name)
+    channel_data = channel_summary[name]
+    sub_data = channel_data['sub']
+
+    for i in range(0, len(sub_data) - 1):
+        sub_data[i] = eval(sub_data[i])
+        sub_data[i]['date'] = sub_data[i]['date'].replace('-', '/')
+
+    return render_template('vtb_data.html', channel = name, title = name, subData = sub_data)
