@@ -1,9 +1,66 @@
-{% extends "base.html" %}
-
-{% block content %}
-
-    {% for vtb in vtbs %}
-        <div><p><a href="{{ '/vtuber/'~vtb.id }}"><b>{{ vtb.name }}</b></a><br><small>{{ vtb.group.name }}所属</small></p></div>
-    {% endfor %}
-
-{% endblock %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.font.im/css?family=Lato:100,400" rel="stylesheet">
+        {% if title %}
+            <title>{{ title }} - Project Palette</title>
+        {% else %}
+            <title>欢迎访问Project Palette!</title>
+        {% endif %}
+        <style>
+            #title {
+                margin-left: 20px;
+                margin-top: 20px;
+                padding-left: 2px;
+                padding-right: 2px;
+                width: auto;
+                height: auto;
+                background-image: linear-gradient(to right, #00FFFD , #FF86DA);
+                text-decoration: none;
+                font-weight: 700;
+                font-family: 'Lato',sans-serif;
+                font-size: 20px;
+                color: black;
+            }
+            #first-option {
+                margin-left: 20px;
+                margin-top: 20px;
+                width: auto;
+                height: auto;
+                text-decoration: none;
+                font-size: 20px;
+                color: black;
+                font-family: 'Lato',sans-serif;
+                font-weight: 100px;
+            }
+            #option {
+                margin-left: 10px;
+                margin-top: 20px;
+                width: auto;
+                height: auto;
+                text-decoration: none;
+                font-size: 20px;
+                color: black;
+                font-family: 'Lato',sans-serif;
+                font-weight: 100px;
+            }
+            #content-title {
+                margin-left: 20px;
+                font-weight: 100px;
+                font-family: 'Lato',sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <a href='/index' id=title>Project Palette</a>
+            <a href='/vtb_list' id=first-option>Vtubers</a>
+            <a href='/group_list' id=option>社团/企业</a>
+            <a href='data_list' id=option>数据汇总</a>
+        </div>
+        <div>
+            <h1 id=content-title>近 期 热 门 管 人</h1>
+        </div>
+    </body>
+</html>
